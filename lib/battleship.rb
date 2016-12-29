@@ -1,4 +1,6 @@
 require './lib/messages'
+require './lib/board'
+require 'pry'
 
 class Battleship
   include Messages
@@ -41,4 +43,11 @@ class Battleship
   def quit
     puts Messages.bye
   end
+
+  def display_board
+    puts Board.new.empty_board
+  end
 end
+
+# b = Battleship.new
+# b.display_board

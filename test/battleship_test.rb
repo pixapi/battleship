@@ -1,6 +1,8 @@
 require './test/test_helper'
 require './lib/battleship'
 
+#WE GET NILS FOR THE PUTS WHEN PRINTING MESSAGES IN BATTLESHIP.RB
+
 class BattleshipTest < Minitest::Test
   def test_it_has_a_class
     b = Battleship.new
