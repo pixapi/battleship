@@ -1,4 +1,6 @@
 class Board #maybe better make it a module and self.methods
+            #but if so, how to move information within without
+            #calling method and passing an argument
   attr_reader :row_a,
               :row_b,
               :row_c,
@@ -6,7 +8,9 @@ class Board #maybe better make it a module and self.methods
               :rows,
               :board,
               :two_unit_positions,
-              :three_unit_positions
+              :three_unit_positions,
+              :e,
+              :h
               #maybe not so many attr_reader needed
 
   def initialize #if module this method could be set_board
@@ -51,6 +55,26 @@ class Board #maybe better make it a module and self.methods
                             "B1 D1", "A2 C2", "B2 D2",
                             "A3 C3", "B3 D3", "A4 C4",
                             "B4 D4"]
+  end
+
+  def get_middle_coordinate(coordinates)
+    a = coordinates
+    b = coordinates.chars
+    if b[-2] == b[0]
+      c = b[-1].to_i - b[1].to_i
+      d = b[0] + (b[1].to_i + 1).to_s
+      @e = a.split(" ").insert(1, d)
+    else
+      f = b[0].next
+      g = f + b[1]
+      @h = a.split(" ").insert(1, g)
+    end
+  end
+
+  def positions #VALID POSITIONS TO SHOOT
+    @two_unit_positions.map do |position|
+      position.split(" ")
+    end.flatten.uniq
   end
 end
 

@@ -77,4 +77,27 @@ class GameSetupTest < Minitest::Test
     assert 3, gs.three_unit_ai.count
   end
 
+  def test_collection_of_computer_ships
+    gs = GameSetup.new
+    gs.two_unit_placement
+    gs.three_unit_placement
+    assert 2, gs.ai_ships.count
+  end
+
+#GETTING undefined method `+' for nil:NilClass
+  # def test_it_places_ships_on_board
+  #   gs = GameSetup.new
+  #   ss = ShipSetup.new
+  #   two_unit_ai = ["A1, A2"]
+  #   three_unit_ai = ["B1", "C1", "D1"]
+  #   gs.place_ai_ships_on_board
+  #   assert_equal "S", ss.row_a
+  # end
+
+  # def test_it_saves_computer_ship_board
+  #   skip
+  #   gs = GameSetup.new
+  #   gs.place_ai_ships_on_board(["C3, C4"], ["A1", "B1", "C1"])
+  #   assert_equal "S", ss.ai_ships_row_c[6]
+  # end
 end
