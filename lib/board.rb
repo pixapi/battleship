@@ -7,6 +7,7 @@ class Board #maybe better make it a module and self.methods
               :board,
               :two_unit_positions,
               :three_unit_positions
+              #maybe not so many attr_reader needed
 
   def initialize #if module this method could be set_board
     @row_a = ["A"] + [" "]* 8
@@ -48,10 +49,11 @@ class Board #maybe better make it a module and self.methods
                             "B2 B4", "C1 C3", "C2 C4",
                             "D1 D3", "D2 D4", "A1 C1",
                             "B1 D1", "A2 C2", "B2 D2",
-                            "A3 C3", "B3 D3", "A4, C4",
+                            "A3 C3", "B3 D3", "A4 C4",
                             "B4 D4"]
   end
 end
-#
+
 # b = Board.new
-# puts b.empty_board
+# p b.two_unit_valid_places
+# p b.two_unit_positions

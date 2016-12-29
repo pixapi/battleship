@@ -44,7 +44,7 @@ class Battleship
     puts Messages.bye
   end
 
-  def display_board
+  def display_empty_board
     puts Board.new.empty_board
   end
 end

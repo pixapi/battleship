@@ -25,6 +25,22 @@ class BattleshipTest < Minitest::Test
 
   def test_follow_menu_options
     #IS THERE A WAY TO TEST THIS WITHOUT TYPING SOMEHOW?
+    # def test_it_evaluates_play_command
+    #   input = "p"
+    #   assert input == "p", Evaluator.play(input)
+    # end
+    # def test_it_evaluates_instructions_command
+    # input = "i"
+    # assert input == "i", Evaluator.instructions(input)
+    # end
+    # def test_it_evaluates_quit_command
+    # input = "q"
+    # assert input == "q", Evaluator.quit(input)
+    # end
+    # def test_it_follows_commands
+    # b = Battleship.new
+    # assert_equal Messages.say_bye, b.follow_command("q")
+    # end
   end
 
   def test_play
@@ -39,5 +55,10 @@ class BattleshipTest < Minitest::Test
   def test_user_quit
     b = Battleship.new
     assert_equal Messages.bye, b.quit
+  end
+
+  def test_it_can_display_empty_board
+    b = Battleship.new
+    assert_equal Board.new.empty_board, b.display_empty_board
   end
 end
