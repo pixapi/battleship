@@ -57,3 +57,5 @@ end
 # b = Board.new
 # p b.two_unit_valid_places
 # p b.two_unit_positions
+# p b.three_unit_valid_places
+# p b.three_unit_positions

@@ -1,4 +1,5 @@
 require './lib/board'
+require './lib/ship_setup'
 require 'pry'
 
 class GameSetup
@@ -9,15 +10,18 @@ class GameSetup
   def initialize
     @ai_ships = []
     @b = Board.new
+    @ss = ShipSetup.new
   end
 
   def two_unit_placement
-    @two_unit_ai= @b.two_unit_valid_places.sample(7).sample.split(" ")
+    two_valid_positions = @b.two_unit_valid_places
+    @two_unit_ai= two_valid_positions.sample(7).sample.split(" ")
     @ai_ships << two_unit_ai
   end
 
   def three_unit_placement
-    three_unit_computer = @b.three_unit_valid_places.sample(7).sample
+    three_valid_positions = @b.three_unit_valid_places
+    three_unit_computer = three_valid_positions.sample(7).sample
     @three_unit_ai = get_middle_coordinate(three_unit_computer)
     common_elements = @two_unit_ai & @three_unit_ai
     if common_elements.count > 0
@@ -46,32 +50,37 @@ class GameSetup
     end.flatten.uniq
   end
 
-  def save_ai_ship_positions(row_a, row_b, row_c, row_d)
-    @row_a_ship_player = row_a
-    @row_b_ship_player = row_b
-    @row_c_ship_player = row_c
-    @row_d_ship_player = row_d
-    @grid_ships_ai = row_a + row_b + row_c + row_d
+  def prepare_to_place_board
+    ships = @two_unit_ai + @three_unit_ai
+    ships.each do |position|
+      letter = position[0]
+      n = position[1].to_i
+      place_computer_ships_board(position, letter, n)
+    end
   end
 
-  def set_computer_ships
-    @ai = Computer.new
-    @ai.two_unit_placement
-    @ai.three_unit_placement
-    set_player_ships
+  def place_computer_ships_board(positon, letter, n)
+    if letter == "A"
+      @row_a_ai = @ss.check_row_a(position, letter, n)
+    elsif letter == "B"
+      @row_b_ai = @ss.check_row_b(position, letter, n)
+    elsif letter == "C"
+      @row_c_ai = @ss.check_row_c(position, letter, n)
+    elsif letter == "D"
+      @row_d_ai = @ss.check_row_d(position, letter, n)
+    end
   end
 
-  def set_player_ships
-    @player = Player.new
-    save_empty_board
+  def ai_ships_board
+    @grid_ships_ai = @row_a_ai + @row_b_ai + @row_c_ai + @row_d_ai
   end
 
-  def place_computer_ships_board
-    @game.prepare_to_place_board(@ai.two_elements_ai, @ai.three_elements_ai)
-    p @board_ai_ships = @game.display_board_with_ships
-    @ai.save_ai_ship_positions(@game.row_a, @game.row_b, @game.row_c, @game.row_d)
-    place_player_ships_board
-  end
 end
 
-gs = GameSetup.new
+# gs = GameSetup.new
+# # gs.b.two_unit_valid_places
+# # gs.b.three_unit_valid_places
+# p gs.two_unit_placement
+# p gs.two_unit_ai
+# p gs.three_unit_placement
+# p gs.three_unit_ai
