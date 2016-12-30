@@ -1,16 +1,18 @@
 require './lib/messages'
 require './lib/board'
+require './lib/game_setup'
 require 'pry'
+require './lib/player_setup'
 
 class Battleship
   include Messages
 
   def intro
-    Messages.welcome
+    puts Messages.welcome
   end
 
   def user_menu
-    Messages.menu
+    puts Messages.menu
   end
 
   def user_enter_menu
@@ -20,7 +22,7 @@ class Battleship
 
   def follow_menu_option
     if @input_menu == "p" || @input_menu == "play"
-      play
+      start_game
     elsif @input_menu == "i" || @input_menu == "instructions"
       instructions
     elsif @input_menu == "q" || @input_menu == "quit"
@@ -28,11 +30,6 @@ class Battleship
     else
       user_menu
     end
-  end
-
-  def play
-    #send user to game, set computer ships and ask player ships
-    #is it worth it to have this method here if we just send to another method?
   end
 
   def instructions
@@ -44,27 +41,58 @@ class Battleship
     puts Messages.bye
   end
 
+  def start_game
+    @gs = GameSetup.new.two_unit_placement
+  end
+
+  def computer_ships_set
+    puts Messages.place_ships
+  end
+
+  def invite_player_set_two_unit
+    puts Messages.two_unit_ship
+  end
+
+  def player_enter_two_unit
+    input_two_unit = gets.downcase.chomp
+    evaluate player_two_unit(input_two_unit)
+  end
+
+  def evaluate_player_two_unit(input_two_unit)
+    @ps = PlayerSetup.new
+    if @ps.two_unit_valid?(input_two_unit) == false
+      puts Messages.invalid_input
+      invite_player_set_two_unit
+    else
+      invite_player_set_three_unit
+    end
+  end
+
+  def invite_player_set_three_unit
+    puts Messages.three_unit_ship
+  end
+
+  def player_enter_three_unit
+    input_three_unit = gets.downcase.chomp
+    evaluate player_three_unit(input_three_unit)
+  end
+
+  def evaluate_player_three_unit(input_three_unit)
+    if @ps.three_unit_valid?(input_three_unit) == false
+      puts Messages.invalid_input
+      invite_player_set_three_unit
+    else
+      #send to next step
+    end
+  end
+
+  #COMPUTER SHIPS SET, PLAYER SHIPS SET
+
   def display_empty_board
     puts Board.new.empty_board
   end
 end
 
-# def set_computer_ships
-#   @ai = Computer.new
-#   @ai.two_unit_placement
-#   @ai.three_unit_placement
-#   set_player_ships
-# end
-#
-# def set_player_ships
-#   @player = Player.new
-#   save_empty_board
-# end
-
-# def display_board_with_ships
-#   @board.display_board
-# end
-#
 # def display_player_progress
 #   @board.player_progress
 # end

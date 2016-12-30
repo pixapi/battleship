@@ -47,6 +47,14 @@ module Messages
     "You have entered an invalid coordinate. Columns are A-D and rows 1-4."
   end
 
+  def self.two_unit_evaluated
+    "Two_unit_successfully_evaluated"
+  end
+  
+  def self.three_unit_evaluated
+    "Three_unit_successfully_evaluated"
+  end
+
   def self.shoot
     "Enter the coordinates to shoot at enemy's ships"
   end

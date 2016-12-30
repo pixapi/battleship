@@ -56,6 +56,14 @@ class MessagesTest < Minitest::Test
     assert_equal invalid_input_message, Messages.invalid_input
   end
 
+  def test_it_displays_two_unit_evaluated
+    assert_equal "Two_unit_successfully_evaluated", Messages.two_unit_evaluated
+  end
+
+  def test_it_displays_three_unit_evaluated
+    assert_equal "Three_unit_successfully_evaluated", Messages.three_unit_evaluated
+  end
+
   def test_it_asks_user_to_shoot
     shoot_message = "Enter the coordinates to shoot at enemy's ships"
     assert_equal shoot_message, Messages.shoot
