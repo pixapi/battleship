@@ -54,12 +54,35 @@ class Battleship
 
   def player_enter_two_unit
     input_two_unit = gets.downcase.chomp
-    evaluate first_ship(input_two_unit)
+    evaluate player_two_unit(input_two_unit)
   end
 
-  def evaluate_first_ship(input_two_unit)
+  def evaluate_player_two_unit(input_two_unit)
     @ps = PlayerSetup.new
-    @ps.evaluate_two_unit(input_two_unit)
+    if @ps.two_unit_valid?(input_two_unit) == false
+      puts Messages.invalid_input
+      invite_player_set_two_unit
+    else
+      invite_player_set_three_unit
+    end
+  end
+
+  def invite_player_set_three_unit
+    puts Messages.three_unit_ship
+  end
+
+  def player_enter_three_unit
+    input_three_unit = gets.downcase.chomp
+    evaluate player_three_unit(input_three_unit)
+  end
+
+  def evaluate_player_three_unit(input_three_unit)
+    if @ps.three_unit_valid?(input_three_unit) == false
+      puts Messages.invalid_input
+      invite_player_set_three_unit
+    else
+      #send to next step
+    end
   end
 
   #COMPUTER SHIPS SET, PLAYER SHIPS SET
@@ -69,7 +92,6 @@ class Battleship
   end
 end
 
-#
 # def display_player_progress
 #   @board.player_progress
 # end

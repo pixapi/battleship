@@ -19,6 +19,8 @@ class Board #maybe better make it a module and self.methods
     @row_c = ["C"] + [" "]* 8
     @row_d = ["D"] + [" "]* 8
     empty_board
+    two_unit_valid_places
+    three_unit_valid_places
   end
 
   def top_bottom_board

@@ -19,7 +19,7 @@ class BattleshipTest < Minitest::Test
     assert_equal Messages.menu, b.user_menu
   end
 
-  def test_user_input
+  def test_user_menu_input
     #IS THERE A WAY TO TEST THIS WITHOUT TYPING SOMEHOW?
   end
 
@@ -66,6 +66,31 @@ class BattleshipTest < Minitest::Test
     assert_equal Messages.two_unit_ship, b.invite_player_set_two_unit
   end
 
+  def test_player_enter_two_unit
+      #IS THERE A WAY TO TEST THIS WITHOUT TYPING SOMEHOW?
+  end
+
+  def test_evaluate_player_two_unit #UNSKIP WHEN METHOD SET IN PLAYER_SETUP
+    skip
+    b = Battleship.new
+    assert_equal "Two_unit_successfully_evaluated", b.evaluate_player_two_unit("A1 A2")
+  end
+
+  def test_invite_player_set_three_unit #SKIPPED, RETURNS NIL FOR PUTS
+    skip
+    b = Battleship.new
+    assert_equal Messages.three_unit_ship, b.invite_player_set_three_unit
+  end
+
+  def test_player_enter_three_unit
+      #IS THERE A WAY TO TEST THIS WITHOUT TYPING SOMEHOW?
+  end
+
+  def test_evaluate_player_three_unit #UNSKIP WHEN METHOD SET IN PLAYER_SETUP
+    skip
+    b = Battleship.new
+    assert_equal "Three_unit_successfully_evaluated", b.evaluate_player_three_unit("C1 C3")
+  end
 
   def test_it_can_display_empty_board #SKIPPED, RETURNS NIL FOR PUTS
     skip
