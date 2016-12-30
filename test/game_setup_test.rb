@@ -85,14 +85,13 @@ class GameSetupTest < Minitest::Test
   end
 
 #GETTING undefined method `+' for nil:NilClass
-  # def test_it_places_ships_on_board
-  #   gs = GameSetup.new
-  #   ss = ShipSetup.new
-  #   two_unit_ai = ["A1, A2"]
-  #   three_unit_ai = ["B1", "C1", "D1"]
-  #   gs.place_ai_ships_on_board
-  #   assert_equal "S", ss.row_a
-  # end
+  def test_it_places_ships_on_board
+    gs = GameSetup.new
+    two_unit_ai = ["A1, A2"]
+    three_unit_ai = ["B1", "C1", "D1"]
+    gs.place_ai_ships_on_board
+    assert_equal "S", gs.ss.row_a
+  end
 
   # def test_it_saves_computer_ship_board
   #   skip

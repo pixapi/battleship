@@ -18,7 +18,7 @@ class PlayerSetup
     else
       @player_ships << two_unit_input
       @two_unit_player = two_unit_input.split(" ")
-      "Two_unit_successfully_evaluated"
+      Messages.two_unit_evaluated
     end
   end
 
@@ -32,7 +32,7 @@ class PlayerSetup
 
   def prepare_coordinates_to_check_use(three_unit_input)
     all_sequence = @board.get_middle_coordinate(three_unit_input)
-    evaluate_coordinates_use(all_sequence)
+    evaluate_coordinates_use(all_sequence, three_unit_input)
   end
 
   def evaluate_coordinates_use(all_sequence, three_unit_input)
@@ -42,7 +42,7 @@ class PlayerSetup
     else
       @player_ships << three_unit_input
       @three_unit_player = all_sequence
-      "Three_unit_successfully_evaluated"
+      Messages.three_unit_evaluated
     end
   end
 
@@ -62,3 +62,7 @@ class PlayerSetup
   #   # display_empty_board
   # end
 end
+
+ps = PlayerSetup.new
+@two_unit_player = ["C1", "C2"]
+ps.prepare_coordinates_to_check_use("A1 A3")

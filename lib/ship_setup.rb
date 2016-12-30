@@ -5,7 +5,8 @@ class ShipSetup #maybe module and self methods
   attr_reader :row_a,
               :row_b,
               :row_c,
-              :row_d
+              :row_d,
+
 
   def initialize
     @board = Board.new

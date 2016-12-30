@@ -2,6 +2,7 @@ require './lib/messages'
 require './lib/board'
 require './lib/game_setup'
 require 'pry'
+require './lib/player_setup'
 
 class Battleship
   include Messages

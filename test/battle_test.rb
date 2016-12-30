@@ -20,7 +20,6 @@ class GameSetupTest < Minitest::Test
   # def test_player_tries_starts_at_zero
   #   skip
   #   set_up
-  #   binding.pry
   #   assert_equal 0, p.player_tries
   # end
   #

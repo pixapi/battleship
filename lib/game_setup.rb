@@ -3,9 +3,10 @@ require './lib/ship_setup'
 require 'pry'
 
 class GameSetup
-  attr_reader :two_unit_ai,
-              :three_unit_ai,
-              :ai_ships
+  attr_accessor :two_unit_ai,
+                :three_unit_ai,
+                :ai_ships,
+                :ss
 
   def initialize
     @ai_ships = []
@@ -14,7 +15,7 @@ class GameSetup
   end
 
   def two_unit_placement
-    @two_unit_ai= @b.two_unit_valid_places.sample(7).sample.split(" ")
+    @two_unit_ai = @b.two_unit_valid_places.sample(7).sample.split(" ")
     @ai_ships << two_unit_ai
     three_unit_placement
   end
@@ -45,7 +46,7 @@ class GameSetup
     @ai_ships_row_b = @ss.row_b
     @ai_ships_row_c = @ss.row_c
     @ai_ships_row_d = @ss.row_d
-    "Computer ships set"
+    "Computer ships set on board"
   end
 end
 
